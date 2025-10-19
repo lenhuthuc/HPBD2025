@@ -105,10 +105,9 @@ animate();
 
 // ----- Nhạc nền -----
 const music = new Audio('music.mp3'); // file music cùng cấp với HTML
-music.loop = true; // lặp lại
+music.loop = true; 
 
-// Click vào chữ: bắn pháo hoa + bật nhạc
-document.getElementById('happy').addEventListener('click', () => {
+document.body.addEventListener('click', () => {
     createFireworks(window.innerWidth/2, window.innerHeight/2);
     music.play();
 });
