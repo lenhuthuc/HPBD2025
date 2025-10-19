@@ -8,7 +8,7 @@
     body {
         margin: 0;
         min-height: 100vh;
-        background-image: url('./2025.png');
+        background-image: url('2025.png'); /* Ảnh cùng cấp với file HTML */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -34,7 +34,6 @@
         20%, 22%, 24%, 55% { opacity: 0.5; }
     }
 
-    /* Canvas cho pháo hoa */
     canvas {
         position: absolute;
         top: 0;
@@ -48,7 +47,7 @@
 <canvas id="fireworks"></canvas>
 
 <script>
-// ----- Pháo hoa đơn giản -----
+// ----- Canvas pháo hoa -----
 const canvas = document.getElementById('fireworks');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -70,13 +69,11 @@ class Particle {
         this.speedY = (Math.random() - 0.5) * 8;
         this.alpha = 1;
     }
-
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
         this.alpha -= 0.02;
     }
-
     draw() {
         ctx.save();
         ctx.globalAlpha = this.alpha;
@@ -106,13 +103,15 @@ function animate() {
 }
 animate();
 
-// ----- Click vào chữ để bắn pháo hoa -----
-document.getElementById('happy').addEventListener('click', (e) => {
-    createFireworks(window.innerWidth/2, window.innerHeight/2);
-});
-
 // ----- Nhạc nền -----
-<audio id="music" src="music.mp3" autoplay loop></audio>
+const music = new Audio('music.mp3'); // file music cùng cấp với HTML
+music.loop = true; // lặp lại
+
+// Click vào chữ: bắn pháo hoa + bật nhạc
+document.getElementById('happy').addEventListener('click', () => {
+    createFireworks(window.innerWidth/2, window.innerHeight/2);
+    music.play();
+});
 </script>
 </body>
 </html>
